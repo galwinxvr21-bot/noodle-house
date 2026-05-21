@@ -58,7 +58,10 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${outfit.variable} scroll-smooth`}
     >
-      <body className="min-h-screen bg-charcoal font-sans text-cream antialiased">
+      <body
+        className="min-h-screen bg-charcoal font-sans text-cream antialiased"
+        suppressHydrationWarning
+      >
         <RestaurantJsonLd />
         {children}
       </body>

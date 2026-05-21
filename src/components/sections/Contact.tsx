@@ -3,8 +3,26 @@
 import { motion } from "framer-motion";
 import { Phone, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
+function ReservationFormSkeleton() {
+  return (
+    <div
+      className="rounded-2xl glass-card p-6 md:p-8"
+      aria-hidden
+    >
+      <div className="h-8 w-48 animate-pulse rounded bg-white/5" />
+      <div className="mt-2 h-4 w-64 animate-pulse rounded bg-white/5" />
+      <div className="mt-6 space-y-4">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="h-12 animate-pulse rounded-lg bg-white/5" />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const socialLinks = [
   {
@@ -122,8 +140,10 @@ export function Contact() {
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={0.15}>
+            <ClientOnly fallback={<ReservationFormSkeleton />}>
             <form
               onSubmit={handleSubmit}
+              autoComplete="off"
               className="rounded-2xl glass-card p-6 md:p-8"
             >
               <h3 className="font-display text-2xl text-cream">
@@ -193,6 +213,7 @@ export function Contact() {
                 </div>
               )}
             </form>
+            </ClientOnly>
           </ScrollReveal>
         </div>
 

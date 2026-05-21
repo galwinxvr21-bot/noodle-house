@@ -104,7 +104,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
-          <p className="font-sans text-xs text-cream/40">
+          <p className="font-sans text-xs text-cream/40" suppressHydrationWarning>
             © {new Date().getFullYear()} Noodle House Cuddalore. All rights
             reserved.
           </p>

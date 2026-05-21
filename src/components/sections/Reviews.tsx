@@ -4,8 +4,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { reviews } from "@/data/reviews";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
+function ReviewCarouselSkeleton() {
+  return (
+    <div className="relative mx-auto max-w-3xl" aria-hidden>
+      <div className="h-64 animate-pulse rounded-2xl border border-white/5 bg-charcoal/50 md:h-72" />
+      <div className="mt-8 flex justify-center gap-4">
+        <div className="h-11 w-11 animate-pulse rounded-full bg-white/5" />
+        <div className="flex gap-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="h-2 w-2 animate-pulse rounded-full bg-white/10" />
+          ))}
+        </div>
+        <div className="h-11 w-11 animate-pulse rounded-full bg-white/5" />
+      </div>
+    </div>
+  );
+}
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -72,6 +90,7 @@ export function Reviews() {
           </div>
         </ScrollReveal>
 
+        <ClientOnly fallback={<ReviewCarouselSkeleton />}>
         <div className="relative mx-auto max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -163,6 +182,7 @@ export function Reviews() {
             </button>
           </div>
         </div>
+        </ClientOnly>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[

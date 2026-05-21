@@ -7,8 +7,38 @@ import {
   menuItems,
   type MenuCategory,
 } from "@/data/menu";
+import { ClientOnly } from "@/components/ui/ClientOnly";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
+function MenuTabsSkeleton() {
+  return (
+    <div
+      className="mb-10 flex flex-wrap justify-center gap-2"
+      aria-hidden
+    >
+      {menuCategories.map((cat) => (
+        <div
+          key={cat.id}
+          className="h-9 w-20 animate-pulse rounded-full bg-white/5 md:w-24"
+        />
+      ))}
+    </div>
+  );
+}
+
+function MenuListSkeleton() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2" aria-hidden>
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div
+          key={i}
+          className="h-24 animate-pulse rounded-xl border border-white/5 bg-wood-dark/20"
+        />
+      ))}
+    </div>
+  );
+}
 
 export function MenuCategories() {
   const [active, setActive] = useState<MenuCategory>("soups");
@@ -23,71 +53,84 @@ export function MenuCategories() {
           subtitle="Soups, ramen, noodles, rice, and more — crafted with care"
         />
 
-        <ScrollReveal>
-          <div className="mb-10 flex flex-wrap justify-center gap-2">
-            {menuCategories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setActive(cat.id)}
-                className={`relative rounded-full px-4 py-2 font-sans text-xs uppercase tracking-widest transition-colors md:px-5 md:text-sm ${
-                  active === cat.id
-                    ? "text-charcoal"
-                    : "text-cream/60 hover:text-cream"
-                }`}
-              >
-                {active === cat.id && (
-                  <motion.span
-                    layoutId="menu-tab"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-gold to-gold-dark"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{cat.label}</span>
-              </button>
-            ))}
-          </div>
-        </ScrollReveal>
+        <ClientOnly
+          fallback={
+            <>
+              <MenuTabsSkeleton />
+              <MenuListSkeleton />
+            </>
+          }
+        >
+          <ScrollReveal>
+            <div className="mb-10 flex flex-wrap justify-center gap-2">
+              {menuCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActive(cat.id)}
+                  className={`relative rounded-full px-4 py-2 font-sans text-xs uppercase tracking-widest transition-colors md:px-5 md:text-sm ${
+                    active === cat.id
+                      ? "text-charcoal"
+                      : "text-cream/60 hover:text-cream"
+                  }`}
+                >
+                  {active === cat.id && (
+                    <motion.span
+                      layoutId="menu-tab"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-gold to-gold-dark"
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat.label}</span>
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35 }}
-            className="grid gap-4 md:grid-cols-2"
-          >
-            {menuItems[active].map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-                className="menu-item-glow group flex items-start justify-between gap-4 rounded-xl border border-white/5 bg-wood-dark/20 p-5 transition-all hover:border-gold/25 hover:bg-wood-dark/40"
-              >
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-display text-lg text-cream group-hover:text-gold transition-colors">
-                      {item.name}
-                    </h4>
-                    {item.tag && (
-                      <span className="rounded bg-neon/20 px-2 py-0.5 font-sans text-[10px] uppercase tracking-wider text-neon">
-                        {item.tag}
-                      </span>
-                    )}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.35 }}
+              className="grid gap-4 md:grid-cols-2"
+            >
+              {menuItems[active].map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="menu-item-glow group flex items-start justify-between gap-4 rounded-xl border border-white/5 bg-wood-dark/20 p-5 transition-all hover:border-gold/25 hover:bg-wood-dark/40"
+                >
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-display text-lg text-cream transition-colors group-hover:text-gold">
+                        {item.name}
+                      </h4>
+                      {item.tag && (
+                        <span className="rounded bg-neon/20 px-2 py-0.5 font-sans text-[10px] uppercase tracking-wider text-neon">
+                          {item.tag}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 font-sans text-sm text-cream/50">
+                      {item.description}
+                    </p>
                   </div>
-                  <p className="mt-1 font-sans text-sm text-cream/50">
-                    {item.description}
-                  </p>
-                </div>
-                <span className="shrink-0 font-sans font-semibold text-gold">
-                  {item.price}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                  <span className="shrink-0 font-sans font-semibold text-gold">
+                    {item.price}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </ClientOnly>
       </div>
     </section>
   );
