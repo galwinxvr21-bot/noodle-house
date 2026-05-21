@@ -1,9 +1,13 @@
+import { foodImages, HERO_IMAGE } from "@/lib/images";
+
 export type Dish = {
   id: string;
   name: string;
   description: string;
   price: string;
   image: string;
+  /** Crop focal point when using the hero spread image */
+  objectPosition?: string;
   popular?: boolean;
 };
 
@@ -14,8 +18,7 @@ export const signatureDishes: Dish[] = [
     description:
       "Aromatic Thai-inspired broth with lemongrass, galangal, and fresh herbs — warming and deeply flavorful.",
     price: "₹249",
-    image:
-      "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&q=80",
+    image: foodImages.soup,
     popular: true,
   },
   {
@@ -24,8 +27,8 @@ export const signatureDishes: Dish[] = [
     description:
       "Smoky wok-charred noodles tossed with crisp vegetables and your choice of protein in house sauce.",
     price: "₹299",
-    image:
-      "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80",
+    image: HERO_IMAGE,
+    objectPosition: "88% 72%",
     popular: true,
   },
   {
@@ -34,8 +37,8 @@ export const signatureDishes: Dish[] = [
     description:
       "Rich tonkotsu-style broth, tender chicken, soft-boiled egg, nori, and springy ramen noodles.",
     price: "₹349",
-    image:
-      "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80",
+    image: HERO_IMAGE,
+    objectPosition: "18% 55%",
     popular: true,
   },
   {
@@ -44,8 +47,7 @@ export const signatureDishes: Dish[] = [
     description:
       "Indonesian stir-fried noodles with sweet soy, shallots, and a perfect balance of spice and umami.",
     price: "₹279",
-    image:
-      "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800&q=80",
+    image: foodImages.mieGoreng,
   },
   {
     id: "chilli-prawn",
@@ -53,8 +55,7 @@ export const signatureDishes: Dish[] = [
     description:
       "Succulent prawns in a tangy-sweet chilli sauce — a signature Indo-Chinese favorite.",
     price: "₹449",
-    image:
-      "https://images.unsplash.com/photo-1565557623262-b51f2513a2be?w=800&q=80",
+    image: foodImages.chilliPrawn,
     popular: true,
   },
   {
@@ -63,8 +64,7 @@ export const signatureDishes: Dish[] = [
     description:
       "Traditional Burmese-style eggs with aromatic spices and a rich, comforting gravy.",
     price: "₹199",
-    image:
-      "https://images.unsplash.com/photo-1589302164678-8265a0ec6f83?w=800&q=80",
+    image: foodImages.eggs,
   },
   {
     id: "miso-ramen",
@@ -72,8 +72,7 @@ export const signatureDishes: Dish[] = [
     description:
       "Silky miso broth, marinated tofu or pork, bamboo shoots, and perfectly al dente noodles.",
     price: "₹329",
-    image:
-      "https://images.unsplash.com/photo-1618841557871-269e3a8e3e5b?w=800&q=80",
+    image: foodImages.misoRamen,
     popular: true,
   },
 ];

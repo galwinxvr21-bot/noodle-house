@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Leaf, Sparkles, BookOpen, Lamp, Users } from "lucide-react";
+import { foodImages } from "@/lib/images";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -43,8 +44,8 @@ export function About() {
           <ScrollReveal direction="left">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80"
-                alt="Noodle House restaurant interior"
+                src={foodImages.about}
+                alt="Noodle House Pan-Asian dishes — ramen and noodles"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

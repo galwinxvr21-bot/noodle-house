@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { Star } from "lucide-react";
+import { HERO_IMAGE } from "@/lib/images";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -23,12 +24,13 @@ export function Hero() {
     >
       <motion.div style={{ y }} className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1920&q=85"
-          alt="Pan-Asian noodles and ramen"
+          src={HERO_IMAGE}
+          alt="Noodle House Pan-Asian spread — ramen, wok noodles, prawns, and dim sum"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-center"
           sizes="100vw"
+          quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0d0d0d_75%)]" />

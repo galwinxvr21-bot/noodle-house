@@ -31,6 +31,11 @@ export function SignatureDishes() {
                     fill
                     loading="lazy"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    style={
+                      dish.objectPosition
+                        ? { objectPosition: dish.objectPosition }
+                        : undefined
+                    }
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
