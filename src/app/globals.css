@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --charcoal: #0d0d0d;
+  --charcoal-light: #141414;
+  --charcoal-dark: #080808;
+  --cream: #f5f0e8;
+  --gold: #c9a227;
+  --gold-dark: #a6851f;
+  --neon: #ff6b4a;
+  --neon-dark: #e85a3a;
+  --wood-dark: #1a1510;
+}
+
+@theme inline {
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-light: var(--charcoal-light);
+  --color-charcoal-dark: var(--charcoal-dark);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-neon: var(--neon);
+  --color-neon-dark: var(--neon-dark);
+  --color-wood: #2a2218;
+  --color-wood-dark: var(--wood-dark);
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-outfit);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--charcoal);
+  color: var(--cream);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(201, 162, 39, 0.35);
+  color: var(--cream);
+}
+
+.glass-nav {
+  background: rgba(13, 13, 13, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bg-wood-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.google-review-card {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 21, 16, 0.9) 0%,
+    rgba(20, 20, 20, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item-glow:hover {
+  box-shadow: 0 0 30px rgba(201, 162, 39, 0.08);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--charcoal-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wood-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
