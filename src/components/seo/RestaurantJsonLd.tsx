@@ -1,16 +1,10 @@
-import {
-  GOOGLE_MAPS_URL,
-  RESTAURANT_ADDRESS,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/site";
+import { GOOGLE_MAPS_URL, RESTAURANT_ADDRESS, SITE_NAME } from "@/lib/site";
 
 export function RestaurantJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: SITE_NAME,
-    url: SITE_URL,
     hasMap: GOOGLE_MAPS_URL,
     description:
       "Authentic Pan-Asian restaurant in Semmandalam, Cuddalore serving Thai, Indonesian, Japanese, Burmese, and Indo-Chinese cuisine.",

@@ -2,8 +2,6 @@
 
 Premium Pan-Asian restaurant website for **Noodle House Cuddalore** — a highly-rated dining destination in Cuddalore, Tamil Nadu.
 
-**Live site:** https://noodlehouse.free.nf
-
 ## Tech Stack
 
 - **Next.js 16** (App Router)
@@ -72,7 +70,7 @@ npm.cmd run dev
 
 ## Customize
 
-- Domain: `src/lib/site.ts`
+- Location & maps: `src/lib/site.ts`
 - Contact: `src/components/sections/Contact.tsx`, `Footer.tsx`
 - Menu: `src/data/menu.ts`, `src/data/dishes.ts`
 - Images: replace Unsplash URLs in `src/data/` and section components

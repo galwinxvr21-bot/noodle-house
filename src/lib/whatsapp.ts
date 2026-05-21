@@ -31,8 +31,6 @@ export function buildReservationMessage(details: ReservationDetails): string {
     `*Date:* ${formatReservationDate(details.date)}`,
     `*Guests:* ${details.guests}`,
     `*Special requests:* ${requests}`,
-    "",
-    "Sent via noodlehouse.free.nf",
   ].join("\n");
 }
 
