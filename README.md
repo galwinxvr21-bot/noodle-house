@@ -2,6 +2,8 @@
 
 Premium Pan-Asian restaurant website for **Noodle House Cuddalore** — a highly-rated dining destination in Cuddalore, Tamil Nadu.
 
+**Live site:** https://noodlehouse.free.nf
+
 ## Tech Stack
 
 - **Next.js 16** (App Router)
@@ -10,45 +12,67 @@ Premium Pan-Asian restaurant website for **Noodle House Cuddalore** — a highly
 - **Framer Motion** — animations, parallax, scroll reveals
 - **Lucide React** — icons
 
-## Features
+## Run locally (after git clone)
 
-- Cinematic fullscreen hero with parallax
-- Signature dishes with steam effects & hover glow
-- Animated menu category tabs
-- Google-style review carousel
-- Masonry gallery with zoom hover
-- Reservation form, maps, WhatsApp CTA
-- Floating order button & mobile bottom nav
-- Elegant loading screen
-- Glassmorphism UI, dark premium aesthetic
-- SEO-optimized metadata
-- Lazy-loaded images
+### Windows (recommended)
 
-## Getting Started
+PowerShell often blocks `npm`. Use one of these:
+
+**Option A — double-click or run:**
+```cmd
+dev.bat
+```
+
+**Option B — Command Prompt:**
+```cmd
+cd D:\noodlehouse
+npm.cmd install
+npm.cmd run dev
+```
+
+Then open **http://localhost:3000**
+
+### Mac / Linux
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+### Fix PowerShell permanently (optional)
 
-## Build
-
-```bash
-npm run build
-npm start
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-## Live site
+After that, `npm run dev` works in PowerShell too.
 
-**https://noodlehouse.free.nf**
+## Build for production
 
-Domain is configured in `src/lib/site.ts` (used for SEO, sitemap, and Open Graph).
+**Windows:**
+```cmd
+scripts\build.bat
+scripts\start.bat
+```
+
+**All platforms:**
+```bash
+npm run build
+npm run start
+```
+
+## GitHub
+
+```bash
+git clone https://github.com/galwinxvr21-bot/noodle-house.git
+cd noodle-house
+npm.cmd install
+npm.cmd run dev
+```
 
 ## Customize
 
-- Update contact details in `src/components/sections/Contact.tsx` and `Footer.tsx`
-- Replace menu prices/items in `src/data/menu.ts` and `src/data/dishes.ts`
-- Swap Unsplash image URLs for your own photography
-- Update Google Maps embed in `Contact.tsx` with your exact location
+- Domain: `src/lib/site.ts`
+- Contact: `src/components/sections/Contact.tsx`, `Footer.tsx`
+- Menu: `src/data/menu.ts`, `src/data/dishes.ts`
+- Images: replace Unsplash URLs in `src/data/` and section components
