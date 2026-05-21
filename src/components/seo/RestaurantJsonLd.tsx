@@ -1,4 +1,9 @@
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import {
+  GOOGLE_MAPS_URL,
+  RESTAURANT_ADDRESS,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 export function RestaurantJsonLd() {
   const jsonLd = {
@@ -6,8 +11,9 @@ export function RestaurantJsonLd() {
     "@type": "Restaurant",
     name: SITE_NAME,
     url: SITE_URL,
+    hasMap: GOOGLE_MAPS_URL,
     description:
-      "Authentic Pan-Asian restaurant in Cuddalore serving Thai, Indonesian, Japanese, Burmese, and Indo-Chinese cuisine.",
+      "Authentic Pan-Asian restaurant in Semmandalam, Cuddalore serving Thai, Indonesian, Japanese, Burmese, and Indo-Chinese cuisine.",
     servesCuisine: [
       "Thai",
       "Indonesian",
@@ -18,8 +24,10 @@ export function RestaurantJsonLd() {
     ],
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Cuddalore",
-      addressRegion: "Tamil Nadu",
+      streetAddress: `${RESTAURANT_ADDRESS.street}, ${RESTAURANT_ADDRESS.plusCode}`,
+      addressLocality: RESTAURANT_ADDRESS.area,
+      addressRegion: RESTAURANT_ADDRESS.state,
+      postalCode: RESTAURANT_ADDRESS.postalCode,
       addressCountry: "IN",
     },
     telephone: "+91-88075-18436",

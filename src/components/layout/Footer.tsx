@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, MapPin, Clock } from "lucide-react";
+import { GOOGLE_MAPS_URL, RESTAURANT_ADDRESS_SHORT } from "@/lib/site";
 
 const quickLinks = [
   { href: "#about", label: "About" },
@@ -77,9 +78,16 @@ export function Footer() {
                   +91 88075 18436
                 </a>
               </li>
-              <li className="flex items-start gap-2 font-sans text-sm text-cream/60">
-                <MapPin size={14} className="mt-0.5 shrink-0 text-gold" />
-                Cuddalore, Tamil Nadu, India
+              <li>
+                <a
+                  href={GOOGLE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2 font-sans text-sm text-cream/60 transition-colors hover:text-gold"
+                >
+                  <MapPin size={14} className="mt-0.5 shrink-0 text-gold" />
+                  {RESTAURANT_ADDRESS_SHORT}
+                </a>
               </li>
             </ul>
             <div className="mt-4 flex gap-3">

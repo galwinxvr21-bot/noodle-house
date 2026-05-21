@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import { Phone, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { ClientOnly } from "@/components/ui/ClientOnly";
-import { WHATSAPP_NUMBER } from "@/lib/site";
+import {
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_URL,
+  RESTAURANT_ADDRESS_LINE,
+  WHATSAPP_NUMBER,
+} from "@/lib/site";
 import { getWhatsAppReservationUrl } from "@/lib/whatsapp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -120,19 +125,27 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl glass-card p-5">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 text-gold">
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 rounded-xl glass-card p-5 transition-colors hover:border-gold/30"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
                   <MapPin size={22} />
                 </span>
                 <div>
                   <p className="font-sans text-xs uppercase tracking-widest text-cream/50">
                     Location
                   </p>
-                  <p className="mt-2 font-sans text-cream/80">
-                    Cuddalore, Tamil Nadu, India
+                  <p className="mt-2 font-sans leading-relaxed text-cream/80">
+                    {RESTAURANT_ADDRESS_LINE}
+                  </p>
+                  <p className="mt-1 font-sans text-sm text-gold">
+                    Open in Google Maps →
                   </p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex flex-wrap gap-3">
                 <a
@@ -244,7 +257,7 @@ export function Contact() {
           <div className="overflow-hidden rounded-2xl border border-white/10">
             <iframe
               title="Noodle House Cuddalore on Google Maps"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.0!2d79.7683!3d11.7480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDQ0JzUyLjgiTiA3OcKwNDYnMDYuMCJF!5e0!3m2!1sen!2sin!4v1"
+              src={GOOGLE_MAPS_EMBED_URL}
               width="100%"
               height="400"
               style={{ border: 0 }}
