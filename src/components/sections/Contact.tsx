@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Phone, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { ClientOnly } from "@/components/ui/ClientOnly";
+import { WHATSAPP_NUMBER } from "@/lib/site";
+import { getWhatsAppReservationUrl } from "@/lib/whatsapp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -50,7 +52,26 @@ export function Contact() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    const date = String(data.get("date") ?? "");
+    const guests = String(data.get("guests") ?? "");
+    const specialRequests = String(data.get("message") ?? "").trim();
+
+    const whatsappUrl = getWhatsAppReservationUrl({
+      name,
+      phone,
+      date,
+      guests,
+      specialRequests,
+    });
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setSubmitted(true);
+    form.reset();
   };
 
   return (
@@ -115,7 +136,7 @@ export function Contact() {
 
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://wa.me/918807518436"
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-sans text-sm font-semibold uppercase tracking-wider text-white transition-transform hover:scale-105"
@@ -150,7 +171,7 @@ export function Contact() {
                 Table Reservation
               </h3>
               <p className="mt-1 font-sans text-sm text-cream/50">
-                We&apos;ll confirm your booking shortly
+                Submit to send your booking details on WhatsApp
               </p>
 
               {submitted ? (
@@ -159,7 +180,8 @@ export function Contact() {
                   animate={{ opacity: 1 }}
                   className="mt-8 rounded-lg bg-gold/10 p-4 font-sans text-gold"
                 >
-                  Thank you! We&apos;ll contact you to confirm your reservation.
+                  Opening WhatsApp… Send the message to complete your
+                  reservation at +91 88075 18436.
                 </motion.p>
               ) : (
                 <div className="mt-6 space-y-4">
@@ -206,9 +228,10 @@ export function Contact() {
                   />
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-gradient-to-r from-gold to-gold-dark py-4 font-sans text-sm font-semibold uppercase tracking-widest text-charcoal transition-transform hover:scale-[1.02]"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold to-gold-dark py-4 font-sans text-sm font-semibold uppercase tracking-widest text-charcoal transition-transform hover:scale-[1.02]"
                   >
-                    Request Reservation
+                    <MessageCircle size={18} />
+                    Request Reservation via WhatsApp
                   </button>
                 </div>
               )}
